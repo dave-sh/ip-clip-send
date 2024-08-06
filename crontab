@@ -1,0 +1,3 @@
+0 0 * * * update-ipsets >> /var/log/cron.log
+0 0 * * * python3 ./updateDatabase.py >> /var/log/cron.log
+# end cron job 

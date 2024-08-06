@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: IP Reputation - OpenAPI 3.0
+  description: |-
+    IP reputation API that retrieves information about IPs in blocklists maintained by FireHOL
+  version: 1.0.0
+paths:
+  /blacklist/{ip}:
+    parameters:
+      - in: path
+        name: ip
+        required: true
+        schema:
+          type: string
+          format: string
+        example: 102.65.57.111
+    get:
+      summary: Search IP database for IP, returns basic information about the IP if it exists in table 
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPInformationSchema'
+        '400':
+          description: Invalid status value
+  /providers/{list_id}:
+      parameters:
+        - in : path
+          name: list_id
+          required: true
+          schema:
+            type: string
+            format: string
+      get: 
+        summary: Search provider database for IP provider and information on list
+        responses:
+          '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ProviderInformationSchema'
+          '400':
+            description: Invalid status value
+    
+components:
+  responses:
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+
+    IPInformationSchema:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        ip_address:
+          type: string
+        ip_or_subnet:
+          type: integer
+        list_id: 
+          type: string
+          
+    ProviderInformationSchema:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        name: 
+          type: string
+        maintainer: 
+          type: string
+        maintainer_url: 
+          type: string
+        category: 
+          type: string
