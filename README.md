@@ -2,7 +2,7 @@
 
 This application is an ip-reputation microservice written using FastAPI and sqlite. 
 
-Inspired by recent security classes and a recommendation from a former interviewer and friend, this project is my way of learning how to build and deploy a microservice. Keep in mind I still am a student, so this is not a perfect product. 
+Inspired by recent security classes and a recommendation from a former interviewer and friend, this project is my way of learning how to build and deploy a microservice. Keep in mind I still am a student, so this is not a perfect product. I am open to any suggestions people might have as I am still learning.
 
 The application is highly customizable. You can easily integrate your own lists using the `update-ipsets` script and by modifying the Dockerfile. The database can be populated with data from up to 600 million potentially malicious IPs, sourced from various vendors and maintained by FireHOL.
 
