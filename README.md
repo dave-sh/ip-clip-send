@@ -7,6 +7,7 @@ Inspired by recent security classes and a recommendation from a former interview
 The application is meant to be highly customizable. You can easily choose which IP lists to include using the `update-ipsets` script and by modifying the Dockerfile. The database can be populated with data from up to 600 million potentially malicious IPs, sourced from various vendors and maintained by FireHOL.
 
 ### Installation 
+To run this, you must have Docker Desktop installed. 
 
 To get started, simply clone the repository and run the following commands:
 
@@ -15,6 +16,30 @@ To get started, simply clone the repository and run the following commands:
 and
 
 `docker compose up` 
+
+If you just want the image or if you would like to customize and mess around, you can first build it and then run an interactive shell. 
+
+`docker build -t ipsecapi:latest .`
+
+If it built correctly, you should be able to view it by running 
+
+`docker images`
+
+![image](https://github.com/user-attachments/assets/30757d94-1fe9-4c65-93c7-1f5c782b6159)
+
+after confirming it built correctly, run an interactive shell using
+
+`docker run -it -rm ipsecapi:latest /bin/bash`
+
+This should open up a shell as root on the container you can play around with. 
+
+![image](https://github.com/user-attachments/assets/646da52e-83f3-4778-967e-3a449460b348)
+
+You can run the `update-ipsets` script which should tell you which lists are currently enabled. 
+
+To enable a new list, run `update-ipsets enable [list name]`.
+
+To disable a list, navigate to `/etc/firehol/ipsets` and delete the `.source` file of the list you no longer want included. 
 
 This installs FireHOL and the `update-ipsets` script as well as two services: 
 
