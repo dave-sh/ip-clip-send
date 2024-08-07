@@ -33,8 +33,6 @@ after confirming it built correctly, run an interactive shell using
 
 This should open up a shell as root on the container you can play around with. 
 
-![image](https://github.com/user-attachments/assets/646da52e-83f3-4778-967e-3a449460b348)
-
 You can run the `update-ipsets` script which should tell you which lists are currently enabled. 
 
 To enable a new list, run `update-ipsets enable [list name]`.
