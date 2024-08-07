@@ -4,7 +4,7 @@ This application is an ip-reputation microservice written using FastAPI and sqli
 
 Inspired by recent security classes and a recommendation from a former interviewer and friend, this project is my way of learning how to build and deploy a microservice. Keep in mind I still am a student, so this is not a perfect product. I am open to any suggestions people might have as I am still learning.
 
-The application is highly customizable. You can easily integrate your own lists using the `update-ipsets` script and by modifying the Dockerfile. The database can be populated with data from up to 600 million potentially malicious IPs, sourced from various vendors and maintained by FireHOL.
+The application is meant to be highly customizable. You can easily choose which IP lists to include using the `update-ipsets` script and by modifying the Dockerfile. The database can be populated with data from up to 600 million potentially malicious IPs, sourced from various vendors and maintained by FireHOL.
 
 ### Installation 
 
@@ -16,13 +16,17 @@ and
 
 `docker compose up` 
 
-This starts two services: 
+This installs FireHOL and the `update-ipsets` script as well as two services: 
 
-1. a cron job that pulls information from your selected sources and populates a database.
-2. an API service
+1. The `update-ipsets` script which allows selection of which lists to include for the API. More information can be found on how to use this script [here](https://github.com/firehol/blocklist-ipsets/wiki).
+
+The services include: 
+
+1. a cron job that pulls information from your selected sources using `update-ipsets` and populates a database.
+2. an API service that will match malicious IPs to your selected sources. 
 
 ### cron job 
-This pulls information from FireHoL.
+This pulls information from FireHOL periodically and updates an sqlite3 database that the API is connected to. 
 
 ### API Service 
 This is something you can deploy via AWS ECS and query to see if an IP matches a malicious IP from one of the vendors using the `blacklist` endpoint. 
