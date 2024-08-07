@@ -52,6 +52,8 @@ The services include:
 This pulls information from FireHOL periodically and updates an sqlite3 database that the API is connected to. 
 
 ### API Service 
+The API specification was designed using the Swagger Editor and can be viewed by putting the `openapi.yaml` file into the Swagger Editor. 
+
 This is something you can deploy via AWS ECS and query to see if an IP matches a malicious IP from one of the vendors using the `blacklist` endpoint. 
 
 ![image](https://github.com/user-attachments/assets/e7eeb2b1-5664-466d-ae73-c94600fbe5d0)
